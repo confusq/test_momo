@@ -1,39 +1,46 @@
-/**
-利用随机概率实现多账户运行
-
-填写格式如下：
-
-
-const MMSLS = [
-    
-    "https://www.maimemo.com/share/page?uid=15249640&pid=afaa99854200461684ec24c45b6aa6e4&tid=57653da5c7394f126d7923c9044b4dc1",
-    "https://www.maimemo.com/share/page?uid=15249640&pid=afaa99854200461684ec24c45b6aa6e4&tid=57653da5c7394f126d7923c9044b4dc1",
-    "https://www.maimemo.com/share/page?uid=15249640&pid=afaa99854200461684ec24c45b6aa6e4&tid=57653da5c7394f126d7923c9044b4dc1",
-  ]
-=====================以上为范例！=====================
-
-=====================请在下面编辑=====================
-=====================请在下面编辑=====================
-=====================请在下面编辑=====================
-=====================请在下面编辑=====================
-=====================请在下面编辑=====================
- */
-const MMSLS = [
-    
-    "https://www.maimemo.com/share/page?uid=5390766&pid=9182b02a377acd5380f2825e87a4f9ec&tid=f3667b755140281d4956e21aff776a19",
-    "https://www.maimemo.com/share/page?uid=5390766&pid=9182b02a377acd5380f2825e87a4f9ec&tid=f3667b755140281d4956e21aff776a19",
-    "https://www.maimemo.com/share/page?uid=5390766&pid=9182b02a377acd5380f2825e87a4f9ec&tid=f3667b755140281d4956e21aff776a19",
-  ]
-  /**
-   * 生成随机数字
-   * @param {number} min 最小值（包含）
-   * @param {number} max 最大值（不包含）
-   */
-  function randomNumber(min = 0, max = 100) {
-    return Math.min(Math.floor(min + Math.random() * (max - min)), max);
-  }
-  const MMSL_random = MMSLS[randomNumber(0, MMSLS.length)];
-  
-  module.exports = {
-    MMSL_random
-  }
+name: Click分享Link
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '1,32 * * * *' 
+  workflow_dispatch:
+  watch:
+    types: started
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache node_modules
+        uses: actions/cache@v2 # 使用 GitHub 官方的缓存 Action。
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
+      - name: npm install
+        run: |
+          npm install
+      - name: '运行'
+        run: |
+          node momo_random.js
+        env:
+          PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
+          PUSH_PLUS_USER: ${{ secrets.PUSH_PLUS_USER }}
+          IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
+          QYWX_KEY: ${{ secrets.QYWX_KEY }}
+          QYWX_AM: ${{ secrets.QYWX_AM }}
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}
+          BARK_PUSH: ${{ secrets.BARK_PUSH }}
+          BARK_SOUND: ${{ secrets.BARK_SOUND }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_USER_ID: ${{ secrets.TG_USER_ID }}
+          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
