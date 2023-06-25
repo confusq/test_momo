@@ -22,8 +22,11 @@ const MMSLS = [
     /*我的 */
     "https://www.maimemo.com/share/page?uid=5390766&pid=0c939072148755a82de18ee31a76cbe4&tid=74defd15b5c94cf95eb9196c961bc4c4",
     "https://www.maimemo.com/share/page?uid=5390766&pid=0c939072148755a82de18ee31a76cbe4&tid=74defd15b5c94cf95eb9196c961bc4c4",
-    "https://www.maimemo.com/share/page?uid=5390766&pid=0c939072148755a82de18ee31a76cbe4&tid=74defd15b5c94cf95eb9196c961bc4c4",
-  ]
+    "https://www.maimemo.com/share/page?uid=7843145&pid=7ba87f9c8ade1a34ab12848e75aaca38&tid=60e6ac024af08ee7f9269aa0236534dc",
+    "https://www.maimemo.com/share/page?uid=7843145&pid=7ba87f9c8ade1a34ab12848e75aaca38&tid=60e6ac024af08ee7f9269aa0236534dc",
+    "https://www.maimemo.com/share/page?uid=7843145&pid=7ba87f9c8ade1a34ab12848e75aaca38&tid=60e6ac024af08ee7f9269aa0236534dc",
+    "https://www.maimemo.com/share/page?uid=7843145&pid=7ba87f9c8ade1a34ab12848e75aaca38&tid=60e6ac024af08ee7f9269aa0236534dc",
+]
   /**
    * 生成随机数字
    * @param {number} min 最小值（包含）
